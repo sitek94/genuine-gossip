@@ -25,7 +25,6 @@ For tests, additionally read:
 For code review or pre-merge checks, read:
 
 - `.agents/project/review-checklist.md`
-- `.agents/skills/flutter/references/review-checklist.md` (if present)
 
 Read deeper `.agents/skills/flutter/references/*` files only when the task touches that area.
 

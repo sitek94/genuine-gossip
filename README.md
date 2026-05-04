@@ -42,16 +42,55 @@ test/
   widget/             # App smoke + session flow widget tests
 ```
 
-## Commands
+## Toolchain
+
+This repository pins the Flutter SDK via `.fvmrc`.
+
+If you use [FVM](https://fvm.app) locally:
+
+```bash
+fvm install
+fvm flutter pub get
+fvm flutter analyze
+fvm flutter test
+```
+
+If you do not use FVM, make sure your installed Flutter version matches `.fvmrc`.
+
+## Validation
+
+Before opening a PR:
 
 ```bash
 flutter pub get
 dart format .
+dart format -o none --set-exit-if-changed .
 flutter analyze
-flutter test
+flutter test --reporter expanded
+```
+
+GitHub Actions runs the same validation in `.github/workflows/validate.yml`.
+
+## Run and build (optional)
+
+```bash
 flutter run
-flutter build appbundle
-flutter build ipa
+flutter build appbundle  # Android, requires release signing (see below)
+```
+
+> iOS distribution (`flutter build ipa`) is intentionally out of scope for this MVP — codesigning/provisioning is not configured in the repo.
+
+## Android release signing
+
+Android release builds require a real signing key.
+
+1. Copy `android/key.properties.template` to `android/key.properties`.
+2. Fill in the real keystore values.
+3. Keep `android/key.properties` and the keystore file out of version control (already covered by `.gitignore`).
+4. Then run:
+
+```bash
+flutter build appbundle --release
 ```
 
 ## App identity
