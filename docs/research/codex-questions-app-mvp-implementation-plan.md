@@ -94,8 +94,8 @@ Use these defaults without asking follow-up questions:
 ```txt
 Project name: questions_app
 Display name: Questions
-Android application ID: com.sitek94.questionsapp
-Apple bundle ID: com.sitek94.questionsapp
+Android application ID: com.macieksitkowski.questionsapp
+Apple bundle ID: com.macieksitkowski.questionsapp
 Supported platforms: iOS, Android
 State management: local StatefulWidget state + pure Dart session model
 Routing: plain Navigator.push / Navigator.pop
@@ -146,7 +146,7 @@ Follow the best-practices pack, but keep the app smaller than a production templ
 ### If creating the Flutter project from outside the repo
 
 ```bash
-flutter create --empty --platforms=ios,android --org com.sitek94 questions_app
+flutter create --empty --platforms=ios,android --org com.macieksitkowski questions_app
 cd questions_app
 ```
 
@@ -155,7 +155,7 @@ cd questions_app
 Use this only if the repo directory name is Dart-valid, for example `questions_app`:
 
 ```bash
-flutter create --empty --platforms=ios,android --org com.sitek94 .
+flutter create --empty --platforms=ios,android --org com.macieksitkowski .
 ```
 
 If the current directory name is not a valid Dart package name, create the Flutter project in a temp directory and move generated files into the repo root.
@@ -898,7 +898,7 @@ Done when:
 Tasks:
 
 1. Ensure display name is `Questions` or `Questions App`.
-2. Ensure app identifiers are placeholders or set to `com.sitek94.questionsapp`.
+2. Ensure app identifiers are placeholders or set to `com.macieksitkowski.questionsapp`.
 3. Set `version: 1.0.0+1` in `pubspec.yaml`.
 4. Write `README.md` with:
    - app purpose

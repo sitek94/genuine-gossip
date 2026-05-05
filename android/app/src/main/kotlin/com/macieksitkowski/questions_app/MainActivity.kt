@@ -1,4 +1,4 @@
-package com.sitek94.questions_app
+package com.macieksitkowski.questions_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -43,8 +43,8 @@ The full Forbidden list lives in `../../.agents/project/scope.md`.
 ## App identity
 
 - Display name: `Questions`
-- Android `applicationId`: `com.sitek94.questionsapp`
-- iOS bundle ID: `com.sitek94.questionsapp`
+- Android `applicationId`: `com.macieksitkowski.questionsapp`
+- iOS bundle ID: `com.macieksitkowski.questionsapp`
 - Version: `1.0.0+1`
 
 ## Distribution

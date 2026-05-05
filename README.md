@@ -55,6 +55,9 @@ fvm flutter analyze
 fvm flutter test
 ```
 
+```result
+```
+
 If you do not use FVM, make sure your installed Flutter version matches `.fvmrc`.
 
 ## Validation
@@ -96,8 +99,8 @@ flutter build appbundle --release
 ## App identity
 
 - Display name: `Questions`
-- Android `applicationId`: `com.sitek94.questionsapp`
-- iOS bundle ID: `com.sitek94.questionsapp`
+- Android `applicationId`: `com.macieksitkowski.questionsapp`
+- iOS bundle ID: `com.macieksitkowski.questionsapp`
 - Version: `1.0.0+1`
 
 ## AI agent instructions
