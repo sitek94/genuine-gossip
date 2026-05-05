@@ -55,9 +55,6 @@ fvm flutter analyze
 fvm flutter test
 ```
 
-```result
-```
-
 If you do not use FVM, make sure your installed Flutter version matches `.fvmrc`.
 
 ## Validation
