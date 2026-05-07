@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Genuine Gossip — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f3; --paper:#ffffff; --ink:#0e0d0b; --soft:#797673; --faint:#b8b6b2;
+  --hair:rgba(14,13,11,.12); --hair2:rgba(14,13,11,.22);
+  --d-bg:#0e0d0b; --d-ink:#f7f6f3; --d-soft:#8b8886;
+  --claret:#7a1f2b; --champagne:#c9a96b;
+  --display:'Cormorant Garamond','Fraunces',Georgia,serif;
+  --sans:'Inter Tight',-apple-system,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --gut:clamp(20px,4vw,56px); --max:1180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ink);color:var(--bg)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+section.block{padding:96px 0;border-top:1px solid var(--hair)}
+section.block:first-of-type{border-top:0}
+.mark{display:grid;grid-template-columns:80px 1fr;gap:32px;margin-bottom:64px}
+.mark .num{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);padding-top:18px}
+.mark h2{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(40px,6vw,72px);line-height:.95;letter-spacing:-1.5px}
+.mark h2 em{font-style:italic}
+.mark .lede{margin-top:16px;font-family:var(--display);font-style:italic;font-weight:300;font-size:22px;line-height:1.4;color:var(--soft);max-width:620px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media (max-width:760px){.two,.three,.five{grid-template-columns:1fr}}
+.tile{background:var(--paper);border:1px solid var(--hair);padding:32px;display:flex;flex-direction:column;gap:16px;min-height:240px;align-items:center;justify-content:center;text-align:center;position:relative}
+.tile.dk{background:var(--d-bg);color:var(--d-ink)}
+.tile.claret{background:var(--claret);color:#f7f6f3}
+.tile.champ{background:var(--champagne);color:#1a1a1a}
+.tile .cap{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft)}
+.tile.dk .cap,.tile.claret .cap{color:rgba(247,246,243,.65)}
+.tile.champ .cap{color:rgba(26,26,26,.65)}
+.swatchgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:4px;margin-top:16px}
+.sw{position:relative;height:180px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;border:1px solid var(--hair)}
+.sw .n{font-weight:500}.sw .h{opacity:.7}
+code,.tok{font-family:var(--mono);font-size:11px;background:rgba(14,13,11,.05);padding:1px 6px;border-radius:3px}
+.dl{font-family:var(--mono);font-size:11px;color:var(--soft);letter-spacing:.4px;display:grid;grid-template-columns:130px 1fr;gap:6px 12px;margin:0}
+.dl dt{color:var(--soft);text-transform:uppercase;letter-spacing:1.2px;font-size:10px;padding-top:2px}
+.dl dd{margin:0;color:var(--ink)}
+.lbl{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--soft);text-transform:uppercase;margin-bottom:8px}
+.voice{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--hair);margin-top:24px}
+.voice>div{padding:24px;border-top:1px solid var(--hair)}
+.voice>div:nth-child(-n+2){border-top:0}
+.voice>div:nth-child(odd){border-right:1px solid var(--hair)}
+.voice .text{font-family:var(--display);font-size:22px;line-height:1.3;font-weight:400;letter-spacing:-.3px}
+.voice .text.it{font-style:italic}
+.voice .strike{color:var(--faint);text-decoration:line-through}
+footer.foot{border-top:1px solid var(--hair);padding:48px 0 96px;font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--soft)}
+.btn{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:1.6px;text-transform:uppercase;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:12px 22px;cursor:pointer}
+/* monogram canvases */
+.mono-tile{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:var(--paper);border:1px solid var(--hair);position:relative}
+.mono-tile.dk{background:var(--d-bg)}
+.mono-tile.claret{background:var(--claret)}
+/* Phone mock for icon-on-springboard preview */
+.springboard{background:linear-gradient(160deg,#3a2434,#1a1424);border-radius:38px;padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:280px;height:380px;align-content:start}
+.springboard .ic{aspect-ratio:1/1;border-radius:14px;background:rgba(255,255,255,.18)}
+.springboard .ic.real{background:var(--bg)}
+</style>
+</head>
+<body>
+
+<header style="border-bottom:1px solid var(--hair);padding:32px 0 64px">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:96px">
+    <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--soft)">
+      <span>Genuine Gossip · Brand Book</span><span>v0.1 · May 2026</span>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--soft);margin-bottom:16px">a private release for two</div>
+      <h1 style="margin:0;font-family:var(--display);font-weight:300;font-size:clamp(64px,13vw,200px);line-height:.86;letter-spacing:-5px">
+        genuine<br/><em style="font-style:italic">gossip.</em>
+      </h1>
+    </div>
+    <div class="two" style="border-top:1px solid var(--hair);padding-top:32px">
+      <p style="font-family:var(--display);font-size:26px;line-height:1.35;font-weight:300;font-style:italic;margin:0">
+        Dearest reader — a small brand for a small object held between two people.
+      </p>
+      <p style="margin:0;color:var(--soft);font-size:15px;line-height:1.6;max-width:48ch">
+        This is the working brand book for Genuine Gossip — a conversation-starter app for couples. The name is a wink to the regency-letter voice of <em>Bridgerton</em>; the product is a quiet card you pass back and forth. This document defines the wordmark, monogram, brand color, app icon, voice, and a holding page for <code>genuinegossip.app</code>.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- 01 NAME STORY -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">01 / The name</div>
+      <div>
+        <h2>Why <em>Genuine Gossip.</em></h2>
+        <p class="lede">It does too much work to be coincidence — a wink for fans, a promise for everyone else.</p>
+      </div>
+    </div>
+    <div class="three">
+      <div><div class="lbl">The wink</div><p style="margin:0;color:var(--soft);max-width:36ch">A regency catchphrase from <em>Bridgerton</em>'s fourth season — the kind of phrase Lady Whistledown would print and the <em>ton</em> would whisper. It belongs to fans without belonging to the show.</p></div>
+      <div><div class="lbl">The promise</div><p style="margin:0;color:var(--soft);max-width:36ch">Gossip implies trust, intimacy, and the small thrill of telling someone the truth. <em>Genuine</em> rules out the cheap kind. The product writes to that bar.</p></div>
+      <div><div class="lbl">The clearance</div><p style="margin:0;color:var(--soft);max-width:36ch">No App Store / Play / USPTO collisions. Domain <code>genuinegossip.app</code> available. The Bridgerton phrase is descriptive, not protected — no Netflix / Shondaland exposure.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 MONOGRAM EXPLORATION -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">02 / Monogram</div>
+      <div>
+        <h2>Five forms of <em>gg</em>.</h2>
+        <p class="lede">The app icon needs a mark, not a wordmark. Five takes — pick one, mix two.</p>
+      </div>
+    </div>
+
+    <div class="five">
+      <div class="mono-tile">
+        <div class="cap" style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:var(--soft);text-transform:uppercase">A · italic gg</div>
+        <svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg>
+      </div>
+      <div class="mono-tile">
+        <div class="cap" style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:var(--soft);text-transform:uppercase">B · single g.</div>
+        <svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="92" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">g.</text></svg>
+      </div>
+      <div class="mono-tile">
+        <div class="cap" style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:var(--soft);text-transform:uppercase">C · stacked Gg</div>
+        <svg viewBox="0 0 120 120" width="80%">
+          <text x="60" y="62" font-family="Cormorant Garamond" font-size="56" font-weight="300" text-anchor="middle" fill="#0e0d0b">G</text>
+          <text x="60" y="106" font-family="Cormorant Garamond" font-size="56" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">g</text>
+        </svg>
+      </div>
+      <div class="mono-tile">
+        <div class="cap" style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:var(--soft);text-transform:uppercase">D · seal</div>
+        <svg viewBox="0 0 120 120" width="80%">
+          <circle cx="60" cy="60" r="42" fill="none" stroke="#0e0d0b" stroke-width="1.2"/>
+          <circle cx="60" cy="60" r="34" fill="#0e0d0b"/>
+          <text x="60" y="73" font-family="Cormorant Garamond" font-size="36" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text>
+        </svg>
+      </div>
+      <div class="mono-tile">
+        <div class="cap" style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1.4px;color:var(--soft);text-transform:uppercase">E · ligature</div>
+        <svg viewBox="0 0 120 120" width="80%">
+          <text x="60" y="80" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b" letter-spacing="-12">gg</text>
+        </svg>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding:32px;background:var(--paper);border:1px solid var(--hair)">
+      <div class="lbl">Recommendation</div>
+      <p style="font-family:var(--display);font-size:26px;font-weight:300;line-height:1.35;letter-spacing:-.3px;margin:0">
+        <strong style="font-weight:400">Form A</strong> — the italic <em>gg</em> ligature — is the everyday mark. It survives at favicon size, sits nicely on a tinted square, and doesn't tip into pastiche. Form D (the wax seal) is held in reserve for letterhead, the changelog, and the holding page hero — a gentler regency wink.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 WORDMARK -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">03 / Wordmark</div>
+      <div>
+        <h2>The lockup.</h2>
+        <p class="lede">Lowercase serif, no caps, period included. The italic carries <em>gossip</em>; the roman carries <em>genuine</em>. Both belong.</p>
+      </div>
+    </div>
+
+    <div class="tile" style="min-height:280px">
+      <div class="cap">primary lockup · light</div>
+      <div style="font-family:var(--display);font-weight:300;font-size:88px;line-height:1;letter-spacing:-2px">genuine <em style="font-style:italic">gossip.</em></div>
+    </div>
+    <div class="tile dk" style="margin-top:4px;min-height:280px">
+      <div class="cap">primary lockup · dark</div>
+      <div style="font-family:var(--display);font-weight:300;font-size:88px;line-height:1;letter-spacing:-2px;color:var(--d-ink)">genuine <em style="font-style:italic">gossip.</em></div>
+    </div>
+
+    <div class="three" style="margin-top:32px">
+      <div class="tile">
+        <div class="cap">stacked</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:48px;line-height:.95;letter-spacing:-1px;text-align:center">genuine<br/><em style="font-style:italic">gossip.</em></div>
+      </div>
+      <div class="tile">
+        <div class="cap">monogram</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:96px;font-style:italic;letter-spacing:-6px">gg</div>
+      </div>
+      <div class="tile">
+        <div class="cap">w/ tagline</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="font-family:var(--display);font-weight:300;font-size:34px;letter-spacing:-.6px">genuine <em style="font-style:italic">gossip.</em></div>
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:2.4px;color:var(--soft);text-transform:uppercase">conversation, between us</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:64px">
+      <div class="lbl">Construction · clear-space</div>
+      <div style="background:var(--paper);border:1px solid var(--hair);padding:48px;position:relative;overflow:hidden">
+        <div style="position:relative;display:inline-block">
+          <div style="font-family:var(--display);font-weight:300;font-size:72px;line-height:1;letter-spacing:-1.5px">genuine <em style="font-style:italic">gossip.</em></div>
+          <!-- clear-space x guides -->
+          <div style="position:absolute;left:-44px;top:-44px;right:-44px;bottom:-44px;border:1px dashed var(--hair2);pointer-events:none"></div>
+          <div style="position:absolute;left:-44px;top:50%;width:44px;height:1px;background:var(--hair2)"></div>
+          <div style="position:absolute;right:-44px;top:50%;width:44px;height:1px;background:var(--hair2)"></div>
+        </div>
+        <div style="margin-top:32px;font-family:var(--mono);font-size:11px;color:var(--soft);letter-spacing:.4px">Clear-space = <code>x</code>, the cap-height of the lowercase <em>g</em>. Nothing crops the ascender of <em>g</em> or the period after <em>gossip</em>.</div>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div>
+        <div class="lbl">Minimum sizes</div>
+        <dl class="dl">
+          <dt>Print</dt><dd>10mm wide (full lockup)</dd>
+          <dt>Screen</dt><dd>120px wide (full lockup) · 24px (monogram)</dd>
+          <dt>Favicon</dt><dd>32px monogram only</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="lbl">Don't</div>
+        <p style="margin:0;color:var(--soft);max-width:40ch">Don't capitalize. Don't drop the period. Don't substitute the italic. Don't add ornament between the words. Don't outline. Don't drop-shadow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TONE EXPLORATION -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">04 / Tone</div>
+      <div>
+        <h2>Read straight, <em>or lean in.</em></h2>
+        <p class="lede">Same wordmark, two postures. The product reads straight; the brand surfaces (site, store, social) can lean a little.</p>
+      </div>
+    </div>
+
+    <div class="two">
+      <!-- Straight -->
+      <div class="tile" style="min-height:380px;align-items:flex-start;text-align:left;padding:48px">
+        <div class="cap">A · read straight</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:54px;line-height:1;letter-spacing:-1.4px">genuine <em style="font-style:italic">gossip.</em></div>
+        <div style="font-family:var(--display);font-style:italic;font-weight:300;font-size:22px;line-height:1.4;color:var(--soft);max-width:32ch;margin-top:8px">Conversation, between us.</div>
+        <div style="margin-top:auto">
+          <div class="lbl">Where</div>
+          <p style="margin:0;font-size:14px;color:var(--soft);max-width:40ch">In-app. App Store screenshots. Newsletter body. Anywhere a sentence does the work.</p>
+        </div>
+      </div>
+      <!-- Lean in -->
+      <div class="tile" style="min-height:380px;align-items:flex-start;text-align:left;padding:48px;background:#f1ece1">
+        <div class="cap">B · lean in lightly</div>
+        <div style="display:flex;align-items:center;gap:18px">
+          <svg width="56" height="56" viewBox="0 0 80 80"><circle cx="40" cy="40" r="28" fill="#7a1f2b"/><text x="40" y="49" font-family="Cormorant Garamond" font-size="22" font-weight="400" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg>
+          <div style="font-family:var(--display);font-weight:300;font-size:48px;line-height:1;letter-spacing:-1.2px">genuine <em style="font-style:italic">gossip.</em></div>
+        </div>
+        <div style="font-family:var(--display);font-style:italic;font-weight:400;font-size:24px;line-height:1.4;max-width:30ch;margin-top:8px">Dearest reader, ask each other this.</div>
+        <div style="margin-top:auto">
+          <div class="lbl">Where</div>
+          <p style="margin:0;font-size:14px;color:var(--soft);max-width:40ch">Holding page hero. Launch announcement. Press kit. The seal favicon. Once or twice — never every surface.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:32px;font-family:var(--display);font-style:italic;font-weight:300;font-size:22px;color:var(--soft);max-width:60ch">
+      Recommendation — ship A everywhere, allow B in the hero of the holding page and the launch newsletter only. The wink earns its keep when it's rare.
+    </p>
+  </div>
+</section>
+
+<!-- 05 COLOR -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">05 / Color</div>
+      <div>
+        <h2>Two systems,<br/><em>one rule.</em></h2>
+        <p class="lede">The product palette is closed (ink + bone). The brand palette extends it — sparingly — for surfaces that need to compete (App Store, social, OG).</p>
+      </div>
+    </div>
+
+    <div class="lbl">Product · closed</div>
+    <div class="swatchgrid">
+      <div class="sw" style="background:#f7f6f3"><span class="n">bone</span><span class="h">#F7F6F3</span></div>
+      <div class="sw" style="background:#0e0d0b;color:#f7f6f3"><span class="n" style="color:#f7f6f3">ink</span><span class="h" style="color:rgba(247,246,243,.7)">#0E0D0B</span></div>
+      <div class="sw" style="background:#797673;color:#f7f6f3"><span class="n" style="color:#f7f6f3">soft</span><span class="h" style="color:rgba(247,246,243,.7)">#797673</span></div>
+    </div>
+
+    <div class="lbl" style="margin-top:48px">Brand · extension (marketing only)</div>
+    <div class="swatchgrid">
+      <div class="sw" style="background:#7a1f2b;color:#f7f6f3"><span class="n" style="color:#f7f6f3">claret</span><span class="h" style="color:rgba(247,246,243,.7)">#7A1F2B · whistledown</span></div>
+      <div class="sw" style="background:#c9a96b"><span class="n">champagne</span><span class="h">#C9A96B · candlelight</span></div>
+      <div class="sw" style="background:#1f1410;color:#f7f6f3"><span class="n" style="color:#f7f6f3">deep ink</span><span class="h" style="color:rgba(247,246,243,.7)">#1F1410 · letterhead</span></div>
+    </div>
+
+    <div class="three" style="margin-top:32px">
+      <div class="tile" style="background:#7a1f2b;color:#f7f6f3;min-height:200px">
+        <div class="cap" style="color:rgba(247,246,243,.65)">claret · seal</div>
+        <svg viewBox="0 0 120 120" width="60%"><circle cx="60" cy="60" r="42" fill="none" stroke="#f7f6f3" stroke-width="1" opacity=".5"/><text x="60" y="74" font-family="Cormorant Garamond" font-size="40" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg>
+      </div>
+      <div class="tile" style="background:#c9a96b;color:#1a1a1a;min-height:200px">
+        <div class="cap" style="color:rgba(26,26,26,.65)">champagne · letterhead</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:40px;font-style:italic">gossip.</div>
+      </div>
+      <div class="tile" style="background:#1f1410;color:#f7f6f3;min-height:200px">
+        <div class="cap" style="color:rgba(247,246,243,.65)">deep ink · OG</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:40px;color:#f7f6f3">genuine <em style="font-style:italic">gossip.</em></div>
+      </div>
+    </div>
+
+    <p style="margin-top:32px;font-family:var(--display);font-style:italic;font-weight:300;font-size:22px;color:var(--soft);max-width:60ch">
+      Recommendation — keep the product strict. Use claret as the single brand accent (favicon, OG, press). Champagne is held in reserve for one piece of letterhead. Never combine the two on one surface.
+    </p>
+  </div>
+</section>
+
+<!-- 06 APP ICON -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">06 / App icon</div>
+      <div>
+        <h2>The mark <em>at home.</em></h2>
+        <p class="lede">Three approved icons. Light is default; dark mirrors the system; claret is the App Store hero.</p>
+      </div>
+    </div>
+
+    <div class="three">
+      <div class="tile" style="min-height:260px">
+        <div class="cap">light · default</div>
+        <svg viewBox="0 0 120 120" width="140" style="border-radius:26px;background:#f7f6f3"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg>
+      </div>
+      <div class="tile dk" style="min-height:260px">
+        <div class="cap" style="color:rgba(247,246,243,.65)">dark · ios tinted</div>
+        <svg viewBox="0 0 120 120" width="140" style="border-radius:26px;background:#0e0d0b"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg>
+      </div>
+      <div class="tile claret" style="min-height:260px">
+        <div class="cap" style="color:rgba(247,246,243,.65)">store · seal</div>
+        <svg viewBox="0 0 120 120" width="140" style="border-radius:26px;background:#7a1f2b"><circle cx="60" cy="60" r="40" fill="none" stroke="#f7f6f3" stroke-width="1" opacity=".4"/><text x="60" y="76" font-family="Cormorant Garamond" font-size="44" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg>
+      </div>
+    </div>
+
+    <div style="margin-top:64px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center">
+      <div class="springboard">
+        <div class="ic"></div><div class="ic"></div><div class="ic"></div><div class="ic"></div>
+        <div class="ic"></div><div class="ic"></div>
+        <div class="ic real" style="display:flex;align-items:center;justify-content:center">
+          <svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg>
+        </div>
+        <div class="ic"></div>
+        <div class="ic"></div><div class="ic"></div><div class="ic"></div><div class="ic"></div>
+      </div>
+      <div>
+        <div class="lbl">In context</div>
+        <p style="font-family:var(--display);font-weight:300;font-size:24px;line-height:1.35;letter-spacing:-.3px;max-width:36ch;margin:0">
+          The icon is a <em>full stop</em> in a noisy springboard. Bone surface, italic mark, no glow. It looks like nothing else on the home screen — that's the point.
+        </p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div>
+        <div class="lbl">Sizes</div>
+        <dl class="dl">
+          <dt>iOS</dt><dd>1024 (store) · 180 · 120 · 87 · 80 · 60 · 40 · 29</dd>
+          <dt>Android</dt><dd>512 (play) · 192 · 144 · 96 · 72 · 48 · 36</dd>
+          <dt>Favicon</dt><dd>180 (apple-touch) · 32 · 16</dd>
+          <dt>Corner radius</dt><dd>iOS auto · Android adaptive · favicon 0</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="lbl">Construction</div>
+        <p style="margin:0;color:var(--soft);max-width:40ch">The italic <em>gg</em> sits on the optical center, not the geometric center — nudge up 4% of the canvas. Cap-height is 60% of the canvas. The descender of the second <em>g</em> ends at the lower clear-space line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 APPLICATIONS -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">07 / Applications</div>
+      <div>
+        <h2>Where it <em>lives.</em></h2>
+        <p class="lede">Open-graph card, social avatar, letterhead, App Store hero. Same kit, different volumes.</p>
+      </div>
+    </div>
+
+    <!-- OG Card -->
+    <div style="background:#1f1410;color:#f7f6f3;aspect-ratio:1.91/1;padding:64px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--hair)">
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:rgba(247,246,243,.65);text-transform:uppercase">
+        <span>genuinegossip.app</span><span>private early release</span>
+      </div>
+      <div style="font-family:var(--display);font-weight:300;font-size:96px;line-height:.95;letter-spacing:-2.5px;color:#f7f6f3">
+        genuine<br/><em style="font-style:italic;color:#c9a96b">gossip.</em>
+      </div>
+      <div style="font-family:var(--display);font-style:italic;font-weight:300;font-size:24px;color:rgba(247,246,243,.85)">Dearest reader — a card to ask each other.</div>
+    </div>
+    <div class="lbl" style="margin-top:8px">Open-graph card · 1200 × 630</div>
+
+    <!-- Letterhead -->
+    <div style="margin-top:64px;background:var(--paper);border:1px solid var(--hair);padding:64px;display:grid;grid-template-columns:1fr 2fr;gap:64px;min-height:420px">
+      <div>
+        <svg viewBox="0 0 120 120" width="64"><circle cx="60" cy="60" r="42" fill="#7a1f2b"/><text x="60" y="74" font-family="Cormorant Garamond" font-size="40" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--soft);text-transform:uppercase;margin-top:24px">Genuine Gossip · Vol. 1, No. 1</div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:1.6px;color:var(--soft);text-transform:uppercase;margin-top:4px">May 2026</div>
+      </div>
+      <div>
+        <div style="font-family:var(--display);font-style:italic;font-weight:300;font-size:42px;line-height:1.1;letter-spacing:-.6px">Dearest reader,</div>
+        <p style="font-family:var(--display);font-weight:300;font-size:20px;line-height:1.5;color:var(--ink);margin-top:16px;max-width:48ch">It is with no small thrill that we announce the <em style="font-style:italic">private release</em> of a small object made for two — an app of conversation cards, each one written and re-written. You have been given the key.</p>
+        <div style="margin-top:32px;font-family:var(--display);font-weight:300;font-size:20px">— the editors</div>
+      </div>
+    </div>
+    <div class="lbl" style="margin-top:8px">Letterhead · launch announcement &amp; changelog</div>
+
+    <!-- Avatars -->
+    <div style="margin-top:64px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+      <div style="width:120px;height:120px;border-radius:50%;background:#f7f6f3;border:1px solid var(--hair);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg></div>
+      <div style="width:120px;height:120px;border-radius:50%;background:#0e0d0b;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg></div>
+      <div style="width:120px;height:120px;border-radius:50%;background:#7a1f2b;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#f7f6f3">gg</text></svg></div>
+      <div style="width:80px;height:80px;border-radius:18px;background:#f7f6f3;border:1px solid var(--hair);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg></div>
+      <div style="width:48px;height:48px;border-radius:10px;background:#f7f6f3;border:1px solid var(--hair);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg></div>
+      <div style="width:32px;height:32px;border-radius:6px;background:#f7f6f3;border:1px solid var(--hair);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="80%"><text x="60" y="82" font-family="Cormorant Garamond" font-size="78" font-weight="300" font-style="italic" text-anchor="middle" fill="#0e0d0b">gg</text></svg></div>
+    </div>
+    <div class="lbl" style="margin-top:8px">Social avatars + favicon set · 120 / 80 / 48 / 32</div>
+  </div>
+</section>
+
+<!-- 08 VOICE -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">08 / Voice</div>
+      <div>
+        <h2>Two voices,<br/><em>one room.</em></h2>
+        <p class="lede">In-app: lowercase, modern, quiet. In marketing: a single regency salutation per page, never more. Whistledown letterhead is reserved for releases &amp; changelogs.</p>
+      </div>
+    </div>
+
+    <div class="voice">
+      <div><div class="lbl">In-app · do</div><div class="text it">tap for next</div></div>
+      <div><div class="lbl">In-app · don't</div><div class="text strike">→ Continue, dearest reader</div></div>
+
+      <div><div class="lbl">In-app · do</div><div class="text it">that's all of them.</div></div>
+      <div><div class="lbl">In-app · don't</div><div class="text strike">🎉 You completed the deck</div></div>
+
+      <div><div class="lbl">Marketing · do</div><div class="text it">Dearest reader, ask each other this.</div></div>
+      <div><div class="lbl">Marketing · don't</div><div class="text strike">Spice up date night with prompts!</div></div>
+
+      <div><div class="lbl">Marketing · do</div><div class="text it">Conversation, between us.</div></div>
+      <div><div class="lbl">Marketing · don't</div><div class="text strike">The #1 couples' question app</div></div>
+    </div>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--hair);padding-top:24px;font-family:var(--mono);font-size:11px;color:var(--soft);letter-spacing:.4px">
+      <div><strong style="display:block;color:var(--ink);font-weight:500;letter-spacing:1.4px;text-transform:uppercase;font-size:10px;margin-bottom:4px">Salutation</strong>"Dearest reader," appears at most once per page, only in marketing, never in-app.</div>
+      <div><strong style="display:block;color:var(--ink);font-weight:500;letter-spacing:1.4px;text-transform:uppercase;font-size:10px;margin-bottom:4px">No emoji</strong>Anywhere. Including marketing. The italic does the smiling.</div>
+      <div><strong style="display:block;color:var(--ink);font-weight:500;letter-spacing:1.4px;text-transform:uppercase;font-size:10px;margin-bottom:4px">Lowercase</strong>UI strings. Deck names. Headlines on the holding page.</div>
+      <div><strong style="display:block;color:var(--ink);font-weight:500;letter-spacing:1.4px;text-transform:uppercase;font-size:10px;margin-bottom:4px">Periods</strong>Use them on UI lines that are sentences. They land.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 DELIVERABLES + holding page link -->
+<section class="block">
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">09 / Next</div>
+      <div>
+        <h2>What ships <em>with this.</em></h2>
+        <p class="lede">A short list of artifacts produced from this book.</p>
+      </div>
+    </div>
+    <div class="three" style="row-gap:24px">
+      <div><div class="lbl">01 · Logo SVGs</div><p style="margin:0;color:var(--soft)">Wordmark (full / stacked), monogram (italic gg), seal monogram. Light, dark, claret.</p></div>
+      <div><div class="lbl">02 · App icon set</div><p style="margin:0;color:var(--soft)">iOS / Android / favicon at all required sizes. Light, dark, claret.</p></div>
+      <div><div class="lbl">03 · OG card</div><p style="margin:0;color:var(--soft)">1200×630 deep-ink card, claret seal accent.</p></div>
+      <div><div class="lbl">04 · Holding page</div><p style="margin:0;color:var(--soft)"><a href="Holding Page — genuinegossip.app.html" style="color:var(--ink)">→ open</a> the pre-launch site for genuinegossip.app.</p></div>
+      <div><div class="lbl">05 · Letterhead</div><p style="margin:0;color:var(--soft)">Whistledown-style template for launch + changelog.</p></div>
+      <div><div class="lbl">06 · Voice card</div><p style="margin:0;color:var(--soft)">One-page do/don't extracted from §08.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex;justify-content:space-between">
+    <span>Genuine Gossip · Brand Book v0.1</span><span>Owned by design · May 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

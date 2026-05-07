@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Two of Us — Design System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* ── Color tokens ─────────────────────────── */
+  --bg:        #f7f6f3;
+  --ink:       #0e0d0b;
+  --ink-soft:  #797673;
+  --ink-faint: #b8b6b2;
+  --hairline:  rgba(14, 13, 11, 0.12);
+  --hairline-strong: rgba(14, 13, 11, 0.22);
+  --paper:     #ffffff;
+  --accent:    #0e0d0b;            /* there is no accent. the type is the accent. */
+
+  --d-bg:        #0e0d0b;
+  --d-ink:       #f7f6f3;
+  --d-ink-soft:  #8b8886;
+  --d-ink-faint: #4a4946;
+  --d-hairline:  rgba(247, 246, 243, 0.14);
+  --d-hairline-strong: rgba(247, 246, 243, 0.28);
+
+  /* ── Type ─────────────────────────────────── */
+  --display: 'Cormorant Garamond', 'Fraunces', Georgia, serif;
+  --sans:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* ── Space scale (4-base, geometric) ─────── */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 144px;
+
+  /* ── Page rhythm ──────────────────────────── */
+  --gut: clamp(20px, 4vw, 56px);
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--ink); color: var(--bg); }
+a { color: inherit; }
+
+/* ── Layout primitives ─────────────────────── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+
+/* Section blocks separated by hairline rules + section number */
+section.block {
+  padding: var(--s-9) 0;
+  border-top: 1px solid var(--hairline);
+}
+section.block:first-of-type { border-top: 0; }
+
+.section-mark {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--s-6);
+  margin-bottom: var(--s-8);
+}
+.section-mark .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 18px;
+}
+.section-mark h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+}
+.section-mark h2 em { font-style: italic; }
+.section-mark .lede {
+  margin-top: var(--s-4);
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 620px;
+}
+
+/* Type display rows */
+.type-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: var(--s-6);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.type-row .meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+.type-row .meta strong { display: block; color: var(--ink); font-weight: 500; letter-spacing: 1.4px; }
+.type-row .specimen { color: var(--ink); }
+
+/* Color swatches */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s-1);
+  margin-top: var(--s-4);
+}
+.swatch {
+  position: relative;
+  height: 200px;
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border: 1px solid var(--hairline);
+}
+.swatch .name { font-weight: 500; }
+.swatch .hex { opacity: 0.7; }
+.swatch.dark .name, .swatch.dark .hex { color: rgba(247,246,243,0.9); }
+
+/* Space scale row */
+.space-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+.space-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  border: 1px solid var(--hairline);
+}
+.space-cell .bar { background: var(--ink); height: 6px; }
+.space-cell .lab { font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-soft); display: flex; justify-content: space-between; }
+.space-cell .lab strong { color: var(--ink); font-weight: 500; }
+
+/* Two-column body */
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-7);
+  align-items: start;
+}
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; gap: var(--s-6); } }
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 760px) { .three { grid-template-columns: 1fr; } }
+
+/* Principle blocks */
+.principle .num { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; }
+.principle h3 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  margin: var(--s-2) 0 var(--s-3);
+}
+.principle p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 38ch; }
+
+/* Component spec layouts */
+.spec {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--hairline);
+  margin-top: var(--s-5);
+}
+.spec-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-top: 1px solid var(--hairline);
+}
+.spec-row:first-child { border-top: 0; }
+.spec-row .preview {
+  padding: var(--s-7) var(--s-6);
+  background: var(--paper);
+  border-right: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 200px;
+}
+.spec-row .preview.dark { background: var(--d-bg); color: var(--d-ink); }
+.spec-row .info { padding: var(--s-6); }
+.spec-row .info h4 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.3px;
+  margin: 0 0 var(--s-2);
+}
+.spec-row .info p { margin: 0 0 var(--s-3); color: var(--ink-soft); font-size: 14px; line-height: 1.55; max-width: 44ch; }
+.spec-row .info dl {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 6px var(--s-3);
+  margin: var(--s-3) 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.4px;
+}
+.spec-row .info dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 1.2px; font-size: 10px; padding-top: 2px; }
+.spec-row .info dd { margin: 0; color: var(--ink); }
+
+@media (max-width: 760px) {
+  .spec-row { grid-template-columns: 1fr; }
+  .spec-row .preview { border-right: 0; border-bottom: 1px solid var(--hairline); }
+}
+
+/* Phone mockups */
+.phone {
+  width: 280px; height: 600px;
+  border-radius: 38px;
+  background: #1a1a1a;
+  padding: 7px;
+  box-shadow: 0 24px 50px -20px rgba(0,0,0,0.25);
+}
+.phone .screen {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+.phone.dk .screen { background: var(--d-bg); color: var(--d-ink); }
+.phone.dk { background: #050504; }
+
+/* Inline tokens */
+code, .tok {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: rgba(14,13,11,0.05);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+}
+
+/* Buttons (the design system itself uses these) */
+.btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn-italic {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+  text-transform: none;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex; align-items: baseline; gap: 10px;
+}
+
+/* Voice / DO-DON'T table */
+.voice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--hairline);
+  margin-top: var(--s-5);
+}
+.voice > div { padding: var(--s-5) var(--s-5); border-top: 1px solid var(--hairline); }
+.voice > div:nth-child(-n+2) { border-top: 0; }
+.voice > div:nth-child(odd) { border-right: 1px solid var(--hairline); }
+.voice .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: var(--s-3); }
+.voice .text { font-family: var(--display); font-size: 22px; line-height: 1.3; font-weight: 400; letter-spacing: -0.3px; }
+.voice .text.italic { font-style: italic; }
+.voice .strike { color: var(--ink-faint); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+/* Footer */
+footer.foot {
+  border-top: 1px solid var(--hairline);
+  padding: var(--s-7) 0 var(--s-9);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex; justify-content: space-between;
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Cover ─────────────────────────────────────── -->
+<header style="border-bottom: 1px solid var(--hairline); padding: var(--s-6) 0 var(--s-8);">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: var(--s-9);">
+
+    <div style="display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft);">
+      <span>Two of Us &nbsp;·&nbsp; Design System</span>
+      <span>v0.1 &nbsp;·&nbsp; May 2026</span>
+    </div>
+
+    <div>
+      <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: var(--s-4);">a fresh visual direction · approved</div>
+      <h1 style="margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(64px, 13vw, 200px); line-height: 0.86; letter-spacing: -5px;">
+        the<br/>
+        <em style="font-style: italic;">typographic</em><br/>
+        system.
+      </h1>
+    </div>
+
+    <div class="two" style="border-top: 1px solid var(--hairline); padding-top: var(--s-6);">
+      <p style="font-family: var(--display); font-size: 26px; line-height: 1.35; font-weight: 300; font-style: italic; margin: 0; color: var(--ink);">
+        The product is a single card held between two people. Type does the work. The interface stays out of the way.
+      </p>
+      <p style="margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.6; max-width: 48ch;">
+        This document is the working spec for Two of Us — a conversation-starter app for couples in private early access. It defines the type scale, color, space, motion, and components needed to ship a product that feels less like an app and more like an object you'd keep on a nightstand. Everything here is opinionated on purpose.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-6); border-top: 1px solid var(--hairline); padding-top: var(--s-5); font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">
+      <div><strong style="display:block; color:var(--ink); font-weight:500;">01 Type</strong> Cormorant + Inter Tight</div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500;">02 Color</strong> Two surfaces, one ink</div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500;">03 Space</strong> 4-base · roomy</div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500;">04 Motion</strong> Slow · honest</div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ─── 01 Principles ─────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">01 / Principles</div>
+      <div>
+        <h2>Five rules <em>before</em><br/>any pixel.</h2>
+        <p class="lede">Decisions worth defending. If a design move violates one of these, the move loses — not the rule.</p>
+      </div>
+    </div>
+
+    <div class="three" style="row-gap: var(--s-7);">
+      <div class="principle">
+        <div class="num">i.</div>
+        <h3>Text is the product.</h3>
+        <p>Every prompt has been written, edited, and re-edited. Treat that work like a poem on a wall — frame it, don't decorate it. The card screen is mostly empty on purpose.</p>
+      </div>
+      <div class="principle">
+        <div class="num">ii.</div>
+        <h3>Quiet beats clever.</h3>
+        <p>No micro-interactions for their own sake. No gradient flourishes. No mascot, no emoji, no ornament. Calm is the brand.</p>
+      </div>
+      <div class="principle">
+        <div class="num">iii.</div>
+        <h3>One typeface, two voices.</h3>
+        <p>Cormorant Garamond carries every reading moment. Inter Tight handles labels, status, navigation. Italics carry warmth — use them.</p>
+      </div>
+      <div class="principle">
+        <div class="num">iv.</div>
+        <h3>Hide the chrome.</h3>
+        <p>The card screen has one labelled control — <em>tap for next</em>. Everything else (change deck, restart) hides at the edges and reveals on dwell. Reading first.</p>
+      </div>
+      <div class="principle">
+        <div class="num">v.</div>
+        <h3>Light and dark are equal.</h3>
+        <p>This is not a dark-mode-as-skin app. Both modes are designed; both are tested with real card text. The dark mode is for couches and beds. Honor it.</p>
+      </div>
+      <div class="principle">
+        <div class="num">vi.</div>
+        <h3>If in doubt, take it out.</h3>
+        <p>The pull is always toward more — more content, more reassurance, more affordance. Resist. The product is a single sentence and the room around it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 02 Typography ─────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">02 / Typography</div>
+      <div>
+        <h2>One serif. One sans.<br/><em>That's enough.</em></h2>
+        <p class="lede">Cormorant Garamond is the voice — it's literary, slightly old-world, and has a stunning italic. Inter Tight is the assistant, doing all the small work so the serif never has to.</p>
+      </div>
+    </div>
+
+    <!-- Stacks -->
+    <div class="two" style="margin-bottom: var(--s-8);">
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Display</div>
+        <div style="font-family: var(--display); font-weight: 300; font-size: 96px; line-height: 0.9; letter-spacing: -2.5px;">Cormorant<br/><em style="font-style: italic;">Garamond</em></div>
+        <dl style="font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.4px; display: grid; grid-template-columns: 110px 1fr; gap: 4px var(--s-3); margin-top: var(--s-5);">
+          <dt>Weights</dt><dd>300 Light · 400 Regular</dd>
+          <dt>Styles</dt><dd>Roman + Italic (both essential)</dd>
+          <dt>Source</dt><dd>Google Fonts (free, OFL)</dd>
+          <dt>Used for</dt><dd>Card text, headlines, deck names, end states</dd>
+          <dt>Tracking</dt><dd>−2.5px @ 96px → −0.2px @ 24px</dd>
+        </dl>
+      </div>
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Sans</div>
+        <div style="font-family: var(--sans); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -1.2px;">Inter Tight</div>
+        <dl style="font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.4px; display: grid; grid-template-columns: 110px 1fr; gap: 4px var(--s-3); margin-top: var(--s-5);">
+          <dt>Weights</dt><dd>400 Regular · 500 Medium</dd>
+          <dt>Source</dt><dd>Google Fonts (free, OFL)</dd>
+          <dt>Used for</dt><dd>Labels, counters, status, buttons</dd>
+          <dt>Style</dt><dd>UPPERCASE with letter-spacing only — never sentence-case sans in body. That's the serif's job.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Type scale -->
+    <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-3);">The scale</div>
+
+    <div class="type-row">
+      <div class="meta"><strong>D1 / Hero</strong>96 px<br/>1.0 lh · −2.5 ls<br/>Light 300</div>
+      <div class="specimen" style="font-family: var(--display); font-weight: 300; font-size: 96px; line-height: 0.9; letter-spacing: -2.5px;">two of us.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>D2 / Card</strong>42 px<br/>1.05 lh · −0.8 ls<br/>Light 300 · italic mix</div>
+      <div class="specimen" style="font-family: var(--display); font-weight: 300; font-size: 42px; line-height: 1.05; letter-spacing: -0.8px;">When was the last time I made you feel <em style="font-style: italic;">truly</em> seen?</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>D3 / Deck</strong>26 px<br/>1.0 lh · −0.5 ls<br/>Light 300 · italic for active</div>
+      <div class="specimen">
+        <span style="font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -0.5px; color: var(--ink-soft);">deep talk</span>
+        <span style="font-family: var(--display); font-weight: 300; font-size: 26px; font-style: italic; letter-spacing: -0.5px; color: var(--ink); margin-left: 12px;">playful energy</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>D4 / Lede</strong>22 px<br/>1.4 lh<br/>Italic 300</div>
+      <div class="specimen" style="font-family: var(--display); font-style: italic; font-weight: 300; font-size: 22px; line-height: 1.4; color: var(--ink-soft);">A quiet object for the two of you, in private early release.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>S1 / Body</strong>15 px<br/>1.55 lh<br/>Regular 400</div>
+      <div class="specimen" style="font-family: var(--sans); font-size: 15px; line-height: 1.55;">Body copy is rare in this product, but when it appears (early-access notice, errors, settings) it sits in Inter Tight at 15 px and reads like a footnote — useful, never dramatic.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>S2 / Action</strong>12 px<br/>1.6 ls<br/>Medium 500 · UPPER</div>
+      <div class="specimen" style="font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 1.6px; text-transform: uppercase;">TAP FOR NEXT &nbsp;·&nbsp; ENTER &nbsp;·&nbsp; CHOOSE A REGISTER</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>S3 / Label</strong>10 px<br/>2.0 ls<br/>Regular 400 · UPPER</div>
+      <div class="specimen" style="font-family: var(--sans); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft);">PLAYFUL ENERGY &nbsp;·&nbsp; 05 / 14 &nbsp;·&nbsp; PRIVATE &nbsp;·&nbsp; V0.1</div>
+    </div>
+
+    <!-- Italic rule -->
+    <div style="margin-top: var(--s-7); padding: var(--s-6); background: var(--paper); border: 1px solid var(--hairline);">
+      <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-3);">House rule · italic</div>
+      <div style="font-family: var(--display); font-size: 28px; font-weight: 300; line-height: 1.3; letter-spacing: -0.4px;">Italic carries the human. Use it for the warm word in a sentence — <em style="font-style: italic;">truly</em>, <em style="font-style: italic;">us</em>, <em style="font-style: italic;">together</em> — never for emphasis on a verb of navigation.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 03 Color ──────────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">03 / Color</div>
+      <div>
+        <h2>Two surfaces.<br/><em>One ink.</em></h2>
+        <p class="lede">There is no brand color. Color is a distraction from the words. Light mode is bone paper; dark mode is bedroom-at-night. The single ink earns every place it lands.</p>
+      </div>
+    </div>
+
+    <!-- Light -->
+    <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-3);">Light · Bone</div>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#f7f6f3;"><span class="name">bg / Bone</span><span class="hex">#F7F6F3</span></div>
+      <div class="swatch" style="background:#ffffff;"><span class="name">paper / Card</span><span class="hex">#FFFFFF</span></div>
+      <div class="swatch" style="background:#0e0d0b; color:#f7f6f3;"><span class="name" style="color:#f7f6f3;">ink</span><span class="hex" style="color:#a09e9b;">#0E0D0B</span></div>
+      <div class="swatch" style="background:#797673; color:#f7f6f3;"><span class="name" style="color:#f7f6f3;">ink-soft</span><span class="hex" style="color:rgba(247,246,243,0.7);">#797673</span></div>
+      <div class="swatch" style="background:#b8b6b2;"><span class="name">ink-faint</span><span class="hex">#B8B6B2</span></div>
+      <div class="swatch" style="background: linear-gradient(to right, #f7f6f3 0%, #f7f6f3 100%); border: 1px solid var(--hairline);"><span class="name">hairline</span><span class="hex">rgba(14,13,11,.12)</span><div style="position:absolute; left:16px; right:16px; top:50%; height:1px; background:rgba(14,13,11,0.12);"></div></div>
+    </div>
+
+    <!-- Dark -->
+    <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin: var(--s-7) 0 var(--s-3);">Dark · Bedroom</div>
+    <div class="swatch-grid">
+      <div class="swatch dark" style="background:#0e0d0b;"><span class="name">d-bg / Ink</span><span class="hex">#0E0D0B</span></div>
+      <div class="swatch dark" style="background:#1a1917;"><span class="name">d-paper / Card</span><span class="hex">#1A1917</span></div>
+      <div class="swatch dark" style="background:#f7f6f3; color:#0e0d0b;"><span class="name" style="color:#0e0d0b;">d-ink</span><span class="hex" style="color:#797673;">#F7F6F3</span></div>
+      <div class="swatch dark" style="background:#8b8886;"><span class="name">d-ink-soft</span><span class="hex">#8B8886</span></div>
+      <div class="swatch dark" style="background:#4a4946;"><span class="name">d-ink-faint</span><span class="hex">#4A4946</span></div>
+      <div class="swatch dark" style="background:#0e0d0b; border: 1px solid rgba(247,246,243,0.14);"><span class="name">d-hairline</span><span class="hex">rgba(247,246,243,.14)</span><div style="position:absolute; left:16px; right:16px; top:50%; height:1px; background:rgba(247,246,243,0.14);"></div></div>
+    </div>
+
+    <!-- Color rules -->
+    <div class="two" style="margin-top: var(--s-8);">
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Allowed</div>
+        <ul style="margin: 0; padding-left: var(--s-4); color: var(--ink); font-family: var(--display); font-size: 22px; line-height: 1.5; font-weight: 400;">
+          <li>Bone &nbsp;<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.4px;">— for surface</span></li>
+          <li>Ink &nbsp;<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.4px;">— for text and the single button</span></li>
+          <li>Three soft greys &nbsp;<span style="font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.4px;">— for hierarchy alone</span></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Disallowed</div>
+        <ul style="margin: 0; padding-left: var(--s-4); color: var(--ink-faint); font-family: var(--display); font-size: 22px; line-height: 1.5; font-weight: 400; text-decoration: line-through; text-decoration-thickness: 1px;">
+          <li>Brand accents</li>
+          <li>Per-deck color coding</li>
+          <li>Semantic red / green / amber</li>
+          <li>Gradients, shadows over 8 px blur</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contrast -->
+    <div style="margin-top: var(--s-7); border-top: 1px solid var(--hairline); padding-top: var(--s-5); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.4px;">
+      <div><strong style="display:block; color:var(--ink); font-weight:500; letter-spacing: 1.4px; text-transform:uppercase; font-size: 10px; margin-bottom: 4px;">Contrast · Light</strong>ink on bone &nbsp;15.8 : 1 &nbsp;<span style="color:var(--ink);">AAA</span><br/>ink-soft on bone &nbsp;5.4 : 1 &nbsp;<span style="color:var(--ink);">AA large</span></div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500; letter-spacing: 1.4px; text-transform:uppercase; font-size: 10px; margin-bottom: 4px;">Contrast · Dark</strong>d-ink on d-bg &nbsp;15.8 : 1 &nbsp;<span style="color:var(--ink);">AAA</span><br/>d-ink-soft on d-bg &nbsp;5.0 : 1 &nbsp;<span style="color:var(--ink);">AA large</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─── 04 Space ──────────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">04 / Space</div>
+      <div>
+        <h2>Roomy on purpose.</h2>
+        <p class="lede">A 4-pixel base, eased into a near-geometric scale. Use the <em>large</em> end of the scale liberally — the silence around a card is part of what the card means.</p>
+      </div>
+    </div>
+
+    <div class="space-grid">
+      <div class="space-cell"><div class="bar" style="width: 4px;"></div><div class="lab"><strong>s-1</strong><span>4</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 8px;"></div><div class="lab"><strong>s-2</strong><span>8</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 12px;"></div><div class="lab"><strong>s-3</strong><span>12</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 16px;"></div><div class="lab"><strong>s-4</strong><span>16</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 24px;"></div><div class="lab"><strong>s-5</strong><span>24</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 32px;"></div><div class="lab"><strong>s-6</strong><span>32</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 48px;"></div><div class="lab"><strong>s-7</strong><span>48</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 64px;"></div><div class="lab"><strong>s-8</strong><span>64</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 96px;"></div><div class="lab"><strong>s-9</strong><span>96</span></div></div>
+      <div class="space-cell"><div class="bar" style="width: 144px; max-width: 100%;"></div><div class="lab"><strong>s-10</strong><span>144</span></div></div>
+    </div>
+
+    <div class="two" style="margin-top: var(--s-7);">
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Mobile margins</div>
+        <p style="margin: 0; color: var(--ink-soft); max-width: 40ch;">Phone screens use <code>22px</code> horizontal gutters and <code>46px</code> top safe-area inset. Card text sits in a <code>22 / 84 / 22 / 110</code> inset (T R B L → top 84, bottom 110) so the prompt is always vertically centered with breathing room above and below the controls.</p>
+      </div>
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Tap targets</div>
+        <p style="margin: 0; color: var(--ink-soft); max-width: 40ch;">Minimum 44 × 44 px. The card screen is the exception: <em>the entire screen</em> is the tap target for "next." Edge handles for change/restart are 56 px wide and reveal on dwell.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 05 Components ─────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">05 / Components</div>
+      <div>
+        <h2>A small kit. <em>Used often.</em></h2>
+        <p class="lede">There are six. Buttons in two flavors, the field, the deck row, the progress ruler, the status meta. Anything not on this list needs an argument before it's added.</p>
+      </div>
+    </div>
+
+    <div class="spec">
+
+      <!-- Primary button -->
+      <div class="spec-row">
+        <div class="preview">
+          <button class="btn">ENTER</button>
+        </div>
+        <div class="info">
+          <h4>Button · Primary</h4>
+          <p>The committing action. There is at most one of these on screen. Outlined, ink on bone, fills on press.</p>
+          <dl>
+            <dt>Type</dt><dd>S2 Action / 12px / 500 / UPPER / +1.6 ls</dd>
+            <dt>Size</dt><dd>height 44 · padding 12·22</dd>
+            <dt>Border</dt><dd>1px ink</dd>
+            <dt>Hover</dt><dd>fill ink, text bone, 150ms</dd>
+            <dt>Press</dt><dd>opacity 0.85, no scale</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Italic button -->
+      <div class="spec-row">
+        <div class="preview">
+          <button class="btn-italic">choose another <span style="font-style: normal;">→</span></button>
+        </div>
+        <div class="info">
+          <h4>Button · Italic</h4>
+          <p>The continuing action. Used at end-of-deck and inline. Reads like a sentence, not a button. The arrow stays roman so it doesn't lean.</p>
+          <dl>
+            <dt>Type</dt><dd>D4 Italic / 22px / 300 / italic</dd>
+            <dt>Hit</dt><dd>full text + 8px halo</dd>
+            <dt>Hover</dt><dd>underline 1px (CSS text-underline-offset: 4px)</dd>
+            <dt>Use</dt><dd>continuations, low-stakes nav</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Field -->
+      <div class="spec-row">
+        <div class="preview">
+          <div style="width: 280px;">
+            <div style="border-bottom: 1px solid var(--ink); padding-bottom: 12px; display: flex; align-items: baseline; justify-content: space-between;">
+              <span style="font-family: var(--display); font-size: 28px; letter-spacing: 8px; font-weight: 300;">M&nbsp;A&nbsp;Y&nbsp;—&nbsp;—</span>
+              <span style="font-family: var(--sans); font-size: 11px; color: var(--ink-soft); letter-spacing: 1px;">KEY</span>
+            </div>
+          </div>
+        </div>
+        <div class="info">
+          <h4>Field · Hairline</h4>
+          <p>The only input in the app — the access key on the gate. No box, no rounded corners. A single ink line and a label.</p>
+          <dl>
+            <dt>Type</dt><dd>D2 / 28px / 300 / +8 letter-spacing</dd>
+            <dt>Underline</dt><dd>1px ink (always; no focus ring)</dd>
+            <dt>Label</dt><dd>S3 right-aligned</dd>
+            <dt>Caret</dt><dd>system caret, ink color</dd>
+            <dt>Error</dt><dd>label flips to <em>not this one. try again.</em> in italic</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Deck row -->
+      <div class="spec-row">
+        <div class="preview">
+          <div style="width: 320px;">
+            <div style="border-top: 1px solid var(--hairline); padding: 12px 0; display: flex; align-items: baseline; gap: 10px; color: var(--ink-soft);">
+              <span style="font-family: var(--sans); font-size: 10px; width: 18px; color: var(--ink-soft);">02</span>
+              <span style="flex: 1; font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -0.5px;">deep talk</span>
+            </div>
+            <div style="border-top: 1px solid var(--hairline); padding: 12px 0; display: flex; align-items: baseline; gap: 10px; color: var(--ink);">
+              <span style="font-family: var(--sans); font-size: 10px; width: 18px; color: var(--ink-soft);">03</span>
+              <span style="flex: 1; font-family: var(--display); font-weight: 300; font-size: 26px; font-style: italic; letter-spacing: -0.5px;">playful energy</span>
+              <span style="font-family: var(--display); font-size: 26px; font-weight: 300;">→</span>
+            </div>
+            <div style="border-top: 1px solid var(--hairline); padding: 12px 0; display: flex; align-items: baseline; gap: 10px; color: var(--ink-soft);">
+              <span style="font-family: var(--sans); font-size: 10px; width: 18px; color: var(--ink-soft);">04</span>
+              <span style="flex: 1; font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -0.5px;">relationship check-in</span>
+            </div>
+            <div style="border-top: 1px solid var(--hairline);"></div>
+          </div>
+        </div>
+        <div class="info">
+          <h4>Deck row</h4>
+          <p>List item for the deck picker. Hairline-separated, all-lowercase serif. Active row goes italic and gains the arrow; inactive rows go ink-soft.</p>
+          <dl>
+            <dt>Type</dt><dd>D3 / 26px / 300 / lowercase</dd>
+            <dt>Active</dt><dd>italic + ink + arrow</dd>
+            <dt>Index</dt><dd>S3 / 18px width / mono-aligned</dd>
+            <dt>Padding</dt><dd>12 · 0 (top/bottom of row)</dd>
+            <dt>Tap</dt><dd>full row, 44px min height</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Progress ruler -->
+      <div class="spec-row">
+        <div class="preview">
+          <div style="width: 320px; display: flex; gap: 3px; align-items: flex-end; height: 10px;">
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+          </div>
+        </div>
+        <div class="info">
+          <h4>Progress · Ruler</h4>
+          <p>The deck-progress indicator. One tick per card; played cards rise to 10px, unplayed sit at 1px. No counters, no percentages — the eye reads it immediately.</p>
+          <dl>
+            <dt>Played</dt><dd>10 px ink bar</dd>
+            <dt>Unplayed</dt><dd>1 px hairline</dd>
+            <dt>Gap</dt><dd>3 px</dd>
+            <dt>Width</dt><dd>fills card gutter (calc 100% − 44)</dd>
+            <dt>Animation</dt><dd>height 1→10 px, 240ms ease-out, on advance</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Status meta -->
+      <div class="spec-row">
+        <div class="preview">
+          <div style="width: 320px; display: flex; justify-content: space-between; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; color: var(--ink-soft); text-transform: uppercase;">
+            <span>playful energy</span>
+            <span style="font-feature-settings: 'tnum';">05 / 14</span>
+          </div>
+        </div>
+        <div class="info">
+          <h4>Status meta</h4>
+          <p>The single header bar across every screen — context on the left, position on the right. Always in the soft grey, always at the very top edge of the safe area.</p>
+          <dl>
+            <dt>Type</dt><dd>S3 / 10px / 400 / +2 ls / UPPER</dd>
+            <dt>Color</dt><dd>ink-soft</dd>
+            <dt>Position</dt><dd>top: 46px (safe-inset)</dd>
+            <dt>Numbers</dt><dd>tabular-nums always</dd>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 06 Motion ─────────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">06 / Motion</div>
+      <div>
+        <h2>Slow.<br/><em>Honest.</em></h2>
+        <p class="lede">Motion is the difference between feeling like an object and feeling like an interface. Default to under-doing it — a card change is a fade and a half-second, not a flick.</p>
+      </div>
+    </div>
+
+    <div class="three" style="margin-top: var(--s-5);">
+      <div class="principle">
+        <div class="num">durations</div>
+        <h3 style="font-size: 24px;"><em>240</em> · 380 · 600 ms</h3>
+        <p>240 for state changes (button hover, ruler tick). 380 for card advance. 600 for screen-to-screen. Nothing snaps.</p>
+      </div>
+      <div class="principle">
+        <div class="num">easing</div>
+        <h3 style="font-size: 24px;">cubic-bezier <em>(.2, .7, .2, 1)</em></h3>
+        <p>Decelerating ease for everything. No bounce, no overshoot, no spring. The product never <em>arrives</em> — it settles.</p>
+      </div>
+      <div class="principle">
+        <div class="num">card transition</div>
+        <h3 style="font-size: 24px;">crossfade · <em>no slide</em></h3>
+        <p>New card cross-fades over the old at 380ms. No horizontal motion — the card is a held object, not a swiped page.</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top: var(--s-7); border-top: 1px solid var(--hairline); padding-top: var(--s-5);">
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Reduce motion</div>
+        <p style="margin: 0; color: var(--ink-soft); max-width: 40ch;">When the OS reports <code>prefers-reduced-motion</code>, drop all transitions to opacity-only fades at 120ms. The product still changes states, just instantly.</p>
+      </div>
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-soft); text-transform: uppercase; margin-bottom: var(--s-2);">Haptics</div>
+        <p style="margin: 0; color: var(--ink-soft); max-width: 40ch;">A single soft haptic on card advance. Nothing on deck pick, nothing on gate enter. Two of Us never buzzes for confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 07 Anatomy ────────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">07 / Anatomy</div>
+      <div>
+        <h2>The card screen,<br/><em>annotated.</em></h2>
+        <p class="lede">Every fixed measurement in the entire app comes back to this one screen. Get this right and the rest of the system follows.</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 280px 1fr; gap: var(--s-8); align-items: flex-start;">
+      <!-- Phone preview -->
+      <div class="phone">
+        <div class="screen">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 36px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: system-ui; font-size: 12px; font-weight: 500; color: rgba(14,13,11,0.6);">
+            <span>9:41</span>
+            <span style="opacity: 0.85;">●●●</span>
+          </div>
+          <div style="position: absolute; top: 46px; left: 0; right: 0; padding: 0 22px; display: flex; justify-content: space-between; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; color: var(--ink-soft); text-transform: uppercase;">
+            <span>playful energy</span>
+            <span style="font-feature-settings: 'tnum';">05 / 14</span>
+          </div>
+          <div style="position: absolute; inset: 0; padding: 84px 22px 110px; display: flex; align-items: center;">
+            <div style="font-family: var(--display); font-weight: 300; font-size: 30px; line-height: 1.05; letter-spacing: -0.6px;">
+              If our relationship were a <em style="font-style: italic;">sandwich</em>, what would be in it <em style="font-style: italic;">— and why?</em>
+            </div>
+          </div>
+          <div style="position: absolute; bottom: 56px; left: 22px; right: 22px; display: flex; gap: 3px; align-items: flex-end; height: 10px;">
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 10px; background: var(--ink);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+            <div style="flex: 1; height: 1px; background: var(--hairline-strong);"></div>
+          </div>
+          <div style="position: absolute; bottom: 28px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: center; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; color: var(--ink-soft); text-transform: uppercase;">
+            <span>⟵ change</span>
+            <span style="font-family: var(--sans); font-size: 11px; color: var(--ink); letter-spacing: 1.4px;">TAP FOR NEXT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Annotations -->
+      <div style="display: grid; gap: var(--s-4); font-family: var(--sans); font-size: 14px;">
+        <div style="display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid var(--hairline);">
+          <span style="font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">a</span>
+          <div><strong style="font-family: var(--display); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.2px;">Status meta</strong><div style="color: var(--ink-soft); margin-top: 2px;">Deck name + position. S3 label, top: 46px.</div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid var(--hairline);">
+          <span style="font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">b</span>
+          <div><strong style="font-family: var(--display); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.2px;">Card text · D2</strong><div style="color: var(--ink-soft); margin-top: 2px;">42 px on iPhone, scales 38–46 by viewport. Top inset 84, bottom 110. Vertically centered. Italics carry warmth.</div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid var(--hairline);">
+          <span style="font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">c</span>
+          <div><strong style="font-family: var(--display); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.2px;">Progress ruler</strong><div style="color: var(--ink-soft); margin-top: 2px;">Played: 10 px ink. Unplayed: 1 px hairline. 56 px from bottom edge.</div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid var(--hairline);">
+          <span style="font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">d</span>
+          <div><strong style="font-family: var(--display); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.2px;">Affordances row</strong><div style="color: var(--ink-soft); margin-top: 2px;">Left: change deck (soft). Center: <em>TAP FOR NEXT</em> (ink — the only labeled control). Right: reserved for restart, hidden until completion.</div></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: baseline;">
+          <span style="font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; color: var(--ink-soft); text-transform: uppercase;">e</span>
+          <div><strong style="font-family: var(--display); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.2px;">Tap target</strong><div style="color: var(--ink-soft); margin-top: 2px;">The entire screen above the affordances row advances to the next card. Single biggest hit area in the app — by design.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 08 Voice ──────────────────────────────────── -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-mark">
+      <div class="num">08 / Voice</div>
+      <div>
+        <h2>Quiet,<br/>warm, <em>certain.</em></h2>
+        <p class="lede">UI copy is shorter than it wants to be, lower-case more often than not, and assumes the reader is an adult in a relationship — not a customer.</p>
+      </div>
+    </div>
+
+    <div class="voice">
+      <div>
+        <div class="lbl">Do</div>
+        <div class="text italic">tap for next</div>
+      </div>
+      <div>
+        <div class="lbl">Don't</div>
+        <div class="text strike">→ Continue to the next question</div>
+      </div>
+
+      <div>
+        <div class="lbl">Do</div>
+        <div class="text italic">that's all of them.</div>
+      </div>
+      <div>
+        <div class="lbl">Don't</div>
+        <div class="text strike">🎉 You completed the deck!</div>
+      </div>
+
+      <div>
+        <div class="lbl">Do</div>
+        <div class="text italic">choose a register.</div>
+      </div>
+      <div>
+        <div class="lbl">Don't</div>
+        <div class="text strike">Pick a category to get started</div>
+      </div>
+
+      <div>
+        <div class="lbl">Do</div>
+        <div class="text italic">not this one. try again.</div>
+      </div>
+      <div>
+        <div class="lbl">Don't</div>
+        <div class="text strike">⚠ Invalid invitation key</div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--s-7); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s-5); border-top: 1px solid var(--hairline); padding-top: var(--s-5); font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.4px;">
+      <div><strong style="display:block; color:var(--ink); font-weight:500; letter-spacing: 1.4px; text-transform:uppercase; font-size: 10px; margin-bottom: 4px;">Lowercase</strong>UI copy &amp; deck names. Reads like a thought, not a sign.</div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500; letter-spacing: 1.4px; text-transform:uppercase; font-size: 10px; margin-bottom: 4px;">No emoji</strong>Ever. The serif italic is our smile.</div>
+      <div><strong style="display:block; color:var(--ink); font-weight:500; letter-spacing: 1.4px; text-transform:uppercase; font-size: 10px; margin-bottom: 4px;">Periods earn it</strong>Use full stops on UI lines that <em>are</em> sentences. They land.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── Footer ────────────────────────────────────── -->
+<footer class="foot">
+  <div class="wrap" style="display: flex; justify-content: space-between; width: 100%;">
+    <span>Two of Us &nbsp;·&nbsp; Design System v0.1</span>
+    <span>Owned by design · last touched May 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

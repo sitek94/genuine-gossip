@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Genuine Gossip — Dearest reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4ebd9; --paper:#fbf6e9; --ink:#1f1410; --soft:#7a6a5a; --claret:#7a1f2b;
+  --hair:rgba(31,20,16,.18);
+  --display:'Cormorant Garamond',Georgia,serif; --sans:'Inter Tight',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;
+  background-image:radial-gradient(circle at 20% 10%, rgba(122,31,43,.05), transparent 50%), radial-gradient(circle at 80% 90%, rgba(201,169,107,.12), transparent 50%);}
+::selection{background:var(--ink);color:var(--bg)}
+.wrap{max-width:980px;margin:0 auto;padding:32px clamp(20px,4vw,48px);width:100%}
+header{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--hair);padding-bottom:24px;margin-bottom:48px}
+header .mark{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px;padding:48px 0}
+.salut{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(28px,3.4vw,40px);color:var(--claret);letter-spacing:-.3px;line-height:1.1}
+h1{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(64px,12vw,168px);line-height:.86;letter-spacing:-4px}
+h1 em{font-style:italic}
+.lede{font-family:var(--display);font-weight:300;font-size:clamp(20px,2.4vw,28px);line-height:1.45;max-width:40ch;color:var(--ink);font-style:italic}
+.note{font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--soft);max-width:46ch}
+.signup{display:flex;flex-direction:column;gap:14px;max-width:480px;margin-top:8px}
+.field{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:12px;gap:16px}
+.field input{flex:1;background:transparent;border:0;outline:0;font-family:var(--display);font-weight:300;font-size:24px;color:var(--ink);padding:0;letter-spacing:-.2px}
+.field input::placeholder{color:var(--soft);font-style:italic}
+.field label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--soft)}
+button.go{align-self:flex-start;background:transparent;border:1px solid var(--ink);color:var(--ink);font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:1.6px;text-transform:uppercase;padding:12px 22px;cursor:pointer;transition:background .15s,color .15s}
+button.go:hover{background:var(--ink);color:var(--bg)}
+.confirm{font-family:var(--display);font-style:italic;font-size:18px;color:var(--claret);display:none}
+.confirm.show{display:block}
+footer{padding:32px 0;border-top:1px solid var(--hair);font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.seal{width:64px;height:64px;flex-shrink:0}
+@media (max-width:560px){h1{letter-spacing:-2px}}
+</style>
+</head>
+<body>
+<div class="wrap" style="display:flex;flex-direction:column;flex:1">
+  <header>
+    <div class="mark">
+      <svg class="seal" style="width:24px;height:24px" viewBox="0 0 80 80"><circle cx="40" cy="40" r="28" fill="#7a1f2b"/><text x="40" y="49" font-family="Cormorant Garamond" font-size="22" font-weight="400" font-style="italic" text-anchor="middle" fill="#f4ebd9">gg</text></svg>
+      <span style="font-family:var(--display);font-weight:400;font-size:18px;letter-spacing:-.2px;text-transform:none">genuine <em style="font-style:italic">gossip.</em></span>
+    </div>
+    <span>private release · 2026</span>
+  </header>
+
+  <main class="hero">
+    <div>
+      <div class="salut">Dearest reader,</div>
+      <h1 style="margin-top:18px">a card<br/>between<br/><em>two of you.</em></h1>
+    </div>
+
+    <p class="lede">A small object — a single conversation card, passed between the two of you, written and re-written. In private early release this autumn.</p>
+
+    <form class="signup" onsubmit="event.preventDefault(); document.getElementById('c').classList.add('show'); this.reset();">
+      <div class="field">
+        <input type="email" placeholder="your@address" required />
+        <label>request a key</label>
+      </div>
+      <button type="submit" class="go">Send key when ready</button>
+      <div id="c" class="confirm">— filed away. you'll hear from us.</div>
+      <p class="note">No newsletter. No marketing. We write to you exactly once, when keys are issued.</p>
+    </form>
+  </main>
+
+  <footer>
+    <span>genuinegossip.app</span>
+    <span>© 2026 · written by hand</span>
+  </footer>
+</div>
+</body>
+</html>
