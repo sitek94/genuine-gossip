@@ -47,16 +47,42 @@ Don't add ornament between the words. Don't outline. Don't drop-shadow.
 
 ## Monogram (`gg`)
 
-The italic ligature is the everyday mark — survives at favicon size,
-sits cleanly on a tinted square, doesn't tip into pastiche.
+Italic Cormorant Garamond Light (300), lowercase. Two size-tier
+variants of the same mark — pick by render size.
 
-The **wax seal** variant (claret circle with `gg` in italic, optional
-hairline ring) is reserved for letterhead, the changelog, and the
-holding-page hero — a gentler regency wink. Use rarely.
+### Display monogram — `gg` tight
 
-Five explored forms exist (italic gg, single g., stacked Gg, seal,
-ligature). Form A (italic gg ligature) is the everyday mark. Form D
-(seal) is held in reserve.
+- Glyphs: `gg` (italic, weight 300).
+- Tracking: **`letter-spacing: -0.0625em`** (≈ −6px @ 96px,
+  −3px @ 48px, −2px @ 32px). Descenders kiss; the mark reads as
+  one designed unit.
+- Use at **≥ 48px**: wordmark lockup display, OG card, letterhead,
+  holding-page seal hero, app icon at 180 / 512 / 1024.
+
+### Compact monogram — `gg` default
+
+- Glyphs: `gg` (italic, weight 300).
+- Tracking: **default** (no letter-spacing override).
+- Use at **≤ 32px**: 32 / 16 favicon, small social avatars,
+  inline marks in body copy.
+
+### Crossover band (33–47px)
+
+Either tier works. Default to display-tight unless rendering shows
+the descenders mushing. At @1x non-retina, prefer compact.
+
+### Wax seal variant
+
+A claret circle with the display monogram inside, optional hairline
+ring. Reserved for letterhead, the changelog, and the holding-page
+hero — a gentler regency wink. Use rarely; never combine with the
+extension palette (champagne) on the same surface.
+
+### Forms explored, not adopted
+
+The brand book showed five forms (italic gg, single `g.`, stacked
+`Gg`, wax seal, full ligature with −12 tracking). Only the two
+above and the seal are canonical; the others are not used.
 
 ## Tone postures
 
